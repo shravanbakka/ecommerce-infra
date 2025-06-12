@@ -4,7 +4,7 @@ provider "azurerm" {
 
 module "rg" {
   source  = "../../modules/rg"
-  name    = "ecommerce-rg-developm"
+  name    = "ecommerce-rg-developme"
   location = var.location
 }
 
