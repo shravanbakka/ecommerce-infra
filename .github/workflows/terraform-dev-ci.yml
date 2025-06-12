@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: terraform/envs/dev
+        working-directory: ./envs/dev
 
     steps:
       - name: Checkout code
