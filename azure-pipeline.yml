@@ -1,0 +1,29 @@
+# azure-pipelines.yml
+trigger:          # Run the pipeline whenever code is pushed to main
+  branches:
+    include:
+      - main
+
+pool:             # Use a Microsoft‑hosted Ubuntu runner
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self        # Grab the repo
+
+  # Install required tooling (example: Node.js 20)
+  - task: UseNode@1
+    inputs:
+      version: '20.x'
+
+  # Build (replace with your own commands)
+  - script: |
+      npm install
+      npm run build
+    displayName: 'Build application'
+
+  # Publish build output as a pipeline artifact
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.SourcesDirectory)/dist'   # folder to publish
+      artifact: app                                  # artifact name
+      publishLocation: 'pipeline'
